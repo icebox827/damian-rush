@@ -3,7 +3,7 @@ import Phaser from 'phaser';
 window.onload = function() {
   const config = {
     type: Phaser.AUTO,
-    width: 1480,
+    width: 1510,
     height: 750,
     scene: {
 
