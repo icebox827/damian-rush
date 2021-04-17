@@ -12,6 +12,22 @@ class Preload extends Phaser.Scene {
     this.load.image('coin', 'assets/img/coin.png');
     this.load.image('trap', 'assets/img/trap.png');
   }
+
+  create(){
+    this.platformGroup = this.add.group({
+
+      removeCallback: function(platform){
+          platform.scene.platformPool.add(platform)
+      }
+    });
+
+    this.platformPool = this.add.group({
+
+      removeCallback: function(platform){
+          platform.scene.platformGroup.add(platform)
+      }
+    });
+  }
 }
 
 export default Preload;
