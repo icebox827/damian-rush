@@ -1,0 +1,19 @@
+{
+  "name": "damian-rush",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/icebox827/damian-rush.git"
+  },
+  "author": "Denis Lafontant",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/icebox827/damian-rush/issues"
+  },
+  "homepage": "https://github.com/icebox827/damian-rush#readme"
+}
