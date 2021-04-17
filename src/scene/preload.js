@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import gameState from './boot';
 
 class Preload extends Phaser.Scene {
   constructor(){
@@ -11,6 +12,7 @@ class Preload extends Phaser.Scene {
     { frameWidth: 32, frameHeight: 48 });
     this.load.image('coin', 'assets/img/coin.png');
     this.load.image('trap', 'assets/img/trap.png');
+    this.load.image('fire', 'assets/img/fire.png');
   }
 
   create(){
@@ -27,6 +29,19 @@ class Preload extends Phaser.Scene {
           platform.scene.platformGroup.add(platform)
       }
     });
+
+    this.playerJumps = 0;
+ 
+    this.addPlatform(game.config.width, game.config.width / 2);
+
+    this.player = this.physics.add.sprite(gameState.playerStartPosition, game.config.height / 2, "player");
+    this.player.setGravityY(gameState.playerGravity);
+
+    this.physics.add.collider(this.player, this.platformGroup);
+
+    this.input.on("pointerdown", this.jump, this);
+
+    
   }
 }
 

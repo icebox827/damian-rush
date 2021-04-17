@@ -7,3 +7,5 @@ const gameState = {
   playerStartPosition: 200,
   jumps: 2
 }
+
+export default gameState;
