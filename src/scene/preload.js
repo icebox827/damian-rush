@@ -1,68 +1,83 @@
 import Phaser from 'phaser';
 import gameState from './boot';
 
-class Preload extends Phaser.Scene {
+class Preload extends Phaser.Scene{
   constructor(){
-    super('Preload');
+    super("PreloadGame");
   }
   preload(){
-    this.load.image('background', 'assets/img/bg.png');
-    this.load.image('platform', 'assets/img/platform.png');
-    this.load.spritesheet('damian', 'assets/img/damian.png',
-    { frameWidth: 32, frameHeight: 48 });
-    this.load.image('coin', 'assets/img/coin.png');
-    this.load.image('trap', 'assets/img/trap.png');
-    this.load.image('fire', 'assets/img/fire.png');
-  }
+    this.load.image("platform", "assets/img/platform.png");
 
+    this.load.spritesheet("player", "assets/img/damian.png", {
+        frameWidth: 24,
+        frameHeight: 48
+    });
+
+    this.load.spritesheet("coin", "assets/img/coin.png", {
+        frameWidth: 20,
+        frameHeight: 20
+    });
+
+    this.load.spritesheet("fire", "assets/img/fire.png", {
+        frameWidth: 40,
+        frameHeight: 70
+    });
+
+    this.load.spritesheet("trap", "assets/img/trap.png", {
+      frameWidth: 40,
+      frameHeight: 70
+    });
+
+    this.load.spritesheet("mountain", "assets/img/bg.png", {
+        frameWidth: 512,
+        frameHeight: 512
+    });
+  }
   create(){
-    this.platformGroup = this.add.group({
-
-      removeCallback: function(platform){
-        platform.scene.platformPool.add(platform)
-      }
+    this.anims.create({
+      key: "run",
+      frames: this.anims.generateFrameNumbers("player", {
+          start: 0,
+          end: 1
+      }),
+      frameRate: 8,
+      repeat: -1
     });
 
-    this.platformPool = this.add.group({
-
-      removeCallback: function(platform){
-        platform.scene.platformGroup.add(platform)
-      }
+    this.anims.create({
+      key: "rotate",
+      frames: this.anims.generateFrameNumbers("coin", {
+          start: 0,
+          end: 5
+      }),
+      frameRate: 15,
+      yoyo: true,
+      repeat: -1
     });
 
-    this.playerJumps = 0;
- 
-    this.addPlatform(game.config.width, game.config.width / 2);
+    this.anims.create({
+      key: "rotate",
+      frames: this.anims.generateFrameNumbers("trap", {
+          start: 0,
+          end: 4
+      }),
+      frameRate: 15,
+      yoyo: true,
+      repeat: -1
+    });
 
-    this.player = this.physics.add.sprite(gameState.playerStartPosition, game.config.height / 2, "player");
-    this.player.setGravityY(gameState.playerGravity);
+    this.anims.create({
+      key: "burn",
+      frames: this.anims.generateFrameNumbers("fire", {
+          start: 0,
+          end: 4
+      }),
+      frameRate: 15,
+      repeat: -1
+    });
 
-    this.physics.add.collider(this.player, this.platformGroup);
-
-    this.input.on("pointerdown", this.jump, this);
+  this.scene.start("PlayGame");
   }
-
-  update(){
-    if(this.player.y > game.config.height){
-        this.scene.start("Preload");
-    }
-    this.player.x = gameState.playerStartPosition;
-
-    let minDistance = game.config.width;
-    this.platformGroup.getChildren().forEach(function(platform){
-        let platformDistance = game.config.width - platform.x - platform.displayWidth / 2;
-        minDistance = Math.min(minDistance, platformDistance);
-        if(platform.x < - platform.displayWidth / 2){
-            this.platformGroup.killAndHide(platform);
-            this.platformGroup.remove(platform);
-        }
-    }, this);
-
-    if(minDistance > this.nextPlatformDistance){
-        var nextPlatformWidth = Phaser.Math.Between(gameState.platformSizeRange[0], gameState.platformSizeRange[1]);
-        this.addPlatform(nextPlatformWidth, game.config.width + nextPlatformWidth / 2);
-    }
-}
 }
 
 export default Preload;

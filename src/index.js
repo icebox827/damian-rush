@@ -1,104 +1,26 @@
 import Phaser from 'phaser';
-// import Preload from './scene/preload';
+import Preload from './scene/preload';
 // import Game from './scene/game';
 // import Title from './scene/title'
 import gameState from './scene/boot';
 
 let game;
  
-
- 
 window.onload = function() {
- 
-    // object containing configuration options
-    let gameConfig = {
-        type: Phaser.AUTO,
-        width: 1334,
-        height: 750,
-        scene: [preloadGame, playGame],
-        backgroundColor: 0x0c88c7,
- 
-        // physics settings
-        physics: {
-            default: "arcade"
-        }
+  const config = {
+    type: Phaser.AUTO,
+    width: 1334,
+    height: 750,
+    scene: [Preload, playGame],
+    backgroundColor: 0x0c88c7,
+    physics: {
+        default: "arcade"
     }
-    game = new Phaser.Game(gameConfig);
-    window.focus();
-    resize();
-    window.addEventListener("resize", resize, false);
-}
- 
-// preloadGame scene
-class preloadGame extends Phaser.Scene{
-    constructor(){
-        super("PreloadGame");
-    }
-    preload(){
-        this.load.image("platform", "assets/img/platform.png");
- 
-        // player is a sprite sheet made by 24x48 pixels
-        this.load.spritesheet("player", "assets/img/damian.png", {
-            frameWidth: 24,
-            frameHeight: 48
-        });
- 
-        // the coin is a sprite sheet made by 20x20 pixels
-        this.load.spritesheet("coin", "assets/img/coin.png", {
-            frameWidth: 20,
-            frameHeight: 20
-        });
- 
-        // the firecamp is a sprite sheet made by 32x58 pixels
-        this.load.spritesheet("fire", "assets/img/fire.png", {
-            frameWidth: 40,
-            frameHeight: 70
-        });
- 
-        // mountains are a sprite sheet made by 512x512 pixels
-        this.load.spritesheet("mountain", "assets/img/bg.png", {
-            frameWidth: 512,
-            frameHeight: 512
-        });
-    }
-    create(){
- 
-        // setting player animation
-        this.anims.create({
-            key: "run",
-            frames: this.anims.generateFrameNumbers("player", {
-                start: 0,
-                end: 1
-            }),
-            frameRate: 8,
-            repeat: -1
-        });
- 
-        // setting coin animation
-        this.anims.create({
-            key: "rotate",
-            frames: this.anims.generateFrameNumbers("coin", {
-                start: 0,
-                end: 5
-            }),
-            frameRate: 15,
-            yoyo: true,
-            repeat: -1
-        });
- 
-        // setting fire animation
-        this.anims.create({
-            key: "burn",
-            frames: this.anims.generateFrameNumbers("fire", {
-                start: 0,
-                end: 4
-            }),
-            frameRate: 15,
-            repeat: -1
-        });
- 
-        this.scene.start("PlayGame");
-    }
+  }
+  game = new Phaser.Game(config);
+  window.focus();
+  resize();
+  window.addEventListener("resize", resize, false);
 }
  
 // playGame scene
