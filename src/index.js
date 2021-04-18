@@ -9,8 +9,8 @@ let game
 window.onload = function () {
   const config = {
     type: Phaser.AUTO,
-    width: 1334,
-    height: 750,
+    width: 1510,
+    height: 720,
     scene: [Preload, playGame],
     backgroundColor: 0x0c88c7,
     physics: {
@@ -19,11 +19,8 @@ window.onload = function () {
   }
   game = new Phaser.Game(config)
   window.focus()
-  resize()
-  window.addEventListener('resize', resize, false)
 }
 
-// playGame scene
 class playGame extends Phaser.Scene {
   constructor () {
     super('PlayGame')
@@ -173,7 +170,7 @@ class playGame extends Phaser.Scene {
         game.config.height + Phaser.Math.Between(0, 100),
         'mountain'
       )
-      mountain.setOrigin(1, 2)
+      mountain.setOrigin(0.5, 1)
       mountain.body.setVelocityX(gameState.mountainSpeed * -1)
       this.mountainGroup.add(mountain)
       if (Phaser.Math.Between(0, 1)) {
@@ -313,13 +310,11 @@ class playGame extends Phaser.Scene {
 
   update () {
     if (this.player.y > game.config.height) {
-      this.add.text(400, 450, "Game Over")
       this.scene.start('PlayGame')
     }
 
     this.player.x = gameState.playerStartPosition
 
-    // recycling platforms
     let minDistance = game.config.width
     let rightmostPlatformHeight = 0
     this.platformGroup.getChildren().forEach(function (platform) {
@@ -335,7 +330,6 @@ class playGame extends Phaser.Scene {
       }
     }, this)
 
-    // recycling coins
     this.coinGroup.getChildren().forEach(function (coin) {
       if (coin.x < -coin.displayWidth / 2) {
         this.coinGroup.killAndHide(coin)
@@ -343,7 +337,6 @@ class playGame extends Phaser.Scene {
       }
     }, this)
 
-    // recycling fire
     this.fireGroup.getChildren().forEach(function (fire) {
       if (fire.x < -fire.displayWidth / 2) {
         this.fireGroup.killAndHide(fire)
@@ -351,7 +344,13 @@ class playGame extends Phaser.Scene {
       }
     }, this)
 
-    // recycling mountains
+    this.trapGroup.getChildren().forEach(function (fire) {
+      if (trap.x < -trap.displayWidth / 2) {
+        this.trapGroup.killAndHide(trap)
+        this.trapGroup.remove(trap)
+      }
+    }, this)
+
     this.mountainGroup.getChildren().forEach(function (mountain) {
       if (mountain.x < -mountain.displayWidth) {
         let rightmostMountain = this.getRightmostMountain()
@@ -364,7 +363,6 @@ class playGame extends Phaser.Scene {
       }
     }, this)
 
-    // adding new platforms
     if (minDistance > this.nextPlatformDistance) {
       let nextPlatformWidth = Phaser.Math.Between(
         gameState.platformSizeRange[0],
@@ -392,19 +390,5 @@ class playGame extends Phaser.Scene {
         nextPlatformHeight
       )
     }
-  }
-}
-function resize () {
-  let canvas = document.querySelector('canvas')
-  let windowWidth = window.innerWidth
-  let windowHeight = window.innerHeight
-  let windowRatio = windowWidth / windowHeight
-  let gameRatio = game.config.width / game.config.height
-  if (windowRatio < gameRatio) {
-    canvas.style.width = windowWidth + 'px'
-    canvas.style.height = windowWidth / gameRatio + 'px'
-  } else {
-    canvas.style.width = windowHeight * gameRatio + 'px'
-    canvas.style.height = windowHeight + 'px'
   }
 }

@@ -1,8 +1,8 @@
 const path = require('path');
 // const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const webpack = require('webpack');
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const CopyWebpackPlugin = require("copy-webpack-plugin");
+// const webpack = require('webpack');
 
 module.exports = {
   entry: './src/index.js',
@@ -25,21 +25,21 @@ module.exports = {
         }
       },
     ],
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: "[name].css",
-        chunkFilename: "[id].css"
-      }),
-      new CopyWebpackPlugin([
-        {
-          from: path.resolve(__dirname, 'index.html'),
-          to: path.resolve(__dirname, 'dist')
-        }
-      ]),
-      new webpack.DefinePlugin({
-        'typeof CANVAS_RENDERER': JSON.stringify(true),
-        'typeof WEBGL_RENDERER': JSON.stringify(true)
-      })
-    ]
+    // plugins: [
+    //   new MiniCssExtractPlugin({
+    //     filename: "[name].css",
+    //     chunkFilename: "[id].css"
+    //   }),
+    //   new CopyWebpackPlugin([
+    //     {
+    //       from: path.resolve(__dirname, 'index.html'),
+    //       to: path.resolve(__dirname, 'dist')
+    //     }
+    //   ]),
+    //   new webpack.DefinePlugin({
+    //     'typeof CANVAS_RENDERER': JSON.stringify(true),
+    //     'typeof WEBGL_RENDERER': JSON.stringify(true)
+    //   })
+    // ]
   },
 };
