@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
 
-class Greetings extends Phaser.Scene {
+class Title extends Phaser.Scene {
   constructor() {
-    super(Greetings)
+    super('Title')
   }
 }
 
-export default Greetings;
+export default Title;
