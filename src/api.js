@@ -7,7 +7,7 @@ const getScore = async() => {
   return response;
 }; 
 
-const setScore = async() => {
+const setScore = async(name, score) => {
   const response = await fetch(url, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
