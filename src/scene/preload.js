@@ -8,7 +8,7 @@ class Preload extends Phaser.Scene{
   preload(){
     this.load.image("platform", "assets/img/platform.png");
 
-    this.load.spritesheet("player", "assets/img/damian.png", {
+    this.load.spritesheet("damian", "assets/img/damian.png", {
         frameWidth: 24,
         frameHeight: 48
     });
@@ -36,7 +36,7 @@ class Preload extends Phaser.Scene{
   create(){
     this.anims.create({
       key: "run",
-      frames: this.anims.generateFrameNumbers("player", {
+      frames: this.anims.generateFrameNumbers("damian", {
           start: 0,
           end: 1
       }),
