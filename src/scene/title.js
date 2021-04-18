@@ -3,7 +3,7 @@ import gameState from './boot';
 
 class Title extends Phaser.Scene {
   constructor() {
-    super('Title')
+    super({ key: 'Title' })
   }
 
   create() {
@@ -12,7 +12,7 @@ class Title extends Phaser.Scene {
  
     const input = document.createElement('input');
     const btn = document.createElement('button');
-    
+
     input.id = 'input';
     btn.id = 'btn';
     btn.type = 'button';
@@ -26,8 +26,8 @@ class Title extends Phaser.Scene {
     document.getElementById('btn').onclick = () => {
       if (document.getElementById('input').value !== '') {
         this.name = document.getElementById('input').value;
-        Cred.name = this.name;
-        this.scene.start('play');
+        gameState.name = this.name;
+        this.scene.start('Game');
         document.getElementById('input').remove();
         document.getElementById('btn').remove();
       } else {
