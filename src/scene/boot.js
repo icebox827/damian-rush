@@ -11,7 +11,8 @@ const gameState = {
   playerStartPosition: 200,
   jumps: 2,
   coinPercent: 30,
-  firePercent: 25
+  firePercent: 25,
+  trapPercent: 25,
 }
 
 export default gameState;

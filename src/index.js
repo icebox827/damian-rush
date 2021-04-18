@@ -173,7 +173,7 @@ class playGame extends Phaser.Scene {
         game.config.height + Phaser.Math.Between(0, 100),
         'mountain'
       )
-      mountain.setOrigin(1.5, 3)
+      mountain.setOrigin(1, 2)
       mountain.body.setVelocityX(gameState.mountainSpeed * -1)
       this.mountainGroup.add(mountain)
       if (Phaser.Math.Between(0, 1)) {
@@ -184,7 +184,6 @@ class playGame extends Phaser.Scene {
     }
   }
 
-  // getting rightmost mountain x position
   getRightmostMountain () {
     let rightmostMountain = -200
     this.mountainGroup.getChildren().forEach(function (mountain) {
@@ -193,7 +192,6 @@ class playGame extends Phaser.Scene {
     return rightmostMountain
   }
 
-  // the core of the script: platform are added from the pool or created on the fly
   addPlatform (platformWidth, posX, posY) {
     this.addedPlatforms++
     let platform
@@ -225,9 +223,7 @@ class playGame extends Phaser.Scene {
       gameState.spawnRange[1]
     )
 
-    // if this is not the starting platform...
     if (this.addedPlatforms > 1) {
-      // is there a coin over the platform?
       if (Phaser.Math.Between(1, 100) <= gameState.coinPercent) {
         if (this.coinPool.getLength()) {
           let coin = this.coinPool.getFirst()
@@ -247,7 +243,6 @@ class playGame extends Phaser.Scene {
         }
       }
 
-      // is there a fire over the platform?
       if (Phaser.Math.Between(1, 100) <= gameState.firePercent) {
         if (this.firePool.getLength()) {
           let fire = this.firePool.getFirst()
@@ -272,11 +267,34 @@ class playGame extends Phaser.Scene {
           this.fireGroup.add(fire)
         }
       }
+
+      if (Phaser.Math.Between(1, 100) <= gameState.trapPercent) {
+        if (this.trapPool.getLength()) {
+          let trap = this.trapPool.getFirst()
+          trap.x =
+            posX - platformWidth / 2 + Phaser.Math.Between(1, platformWidth)
+          trap.y = posY - 46
+          trap.alpha = 1
+          trap.active = true
+          trap.visible = true
+          this.trapPool.remove(trap)
+        } else {
+          let trap = this.physics.add.sprite(
+            posX - platformWidth / 2 + Phaser.Math.Between(1, platformWidth),
+            posY - 46,
+            'trap'
+          )
+          trap.setImmovable(true)
+          trap.setVelocityX(platform.body.velocity.x)
+          trap.setSize(8, 2, true)
+          trap.anims.play('rotate')
+          trap.setDepth(2)
+          this.trapGroup.add(trap)
+        }
+      }
     }
   }
 
-  // the player jumps when on the ground, or once in the air as long as there are jumps left and the first jump was on the ground
-  // and obviously if the player is not dying
   jump () {
     if (
       !this.dying &&
@@ -289,14 +307,13 @@ class playGame extends Phaser.Scene {
       this.player.setVelocityY(gameState.jumpForce * -1)
       this.playerJumps++
 
-      // stops animation
       this.player.anims.stop()
     }
   }
 
   update () {
-    // game over
     if (this.player.y > game.config.height) {
+      this.add.text(400, 450, "Game Over")
       this.scene.start('PlayGame')
     }
 
