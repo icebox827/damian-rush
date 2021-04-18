@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import Preload from './scene/preload';
 import Game from './scene/game';
+import Title from './scene/title'
 
 window.onload = function() {
   const config = {
@@ -10,6 +11,10 @@ window.onload = function() {
     scene: {
       Preload,
       Game,
+      Title
+    },
+    dom: {
+      createContainer: true,
     },
     backgroundColor: 0x444484,
     physics: {
@@ -18,22 +23,4 @@ window.onload = function() {
   }
   const game = new Phaser.Game(config);
   window.focus();
-  resize();
-  window.addEventListener("resize", resize, false);
-
-  function resize(){
-    let canvas = document.querySelector("canvas");
-    let windowWidth = window.innerWidth;
-    let windowHeight = window.innerHeight;
-    let windowRatio = windowWidth / windowHeight;
-    let gameRatio = game.config.width / game.config.height;
-    if(windowRatio < gameRatio){
-        canvas.style.width = windowWidth + "px";
-        canvas.style.height = (windowWidth / gameRatio) + "px";
-    }
-    else{
-        canvas.style.width = (windowHeight * gameRatio) + "px";
-        canvas.style.height = windowHeight + "px";
-    }
-  }
 }
