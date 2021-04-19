@@ -46,6 +46,7 @@ class Preload extends Phaser.Scene {
       frameRate: 15,
       repeat: -1,
     });
+    
     this.scene.start('PlayGame');
   }
 }

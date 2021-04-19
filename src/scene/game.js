@@ -1,16 +1,20 @@
 import Phaser from 'phaser';
 import gameState from './boot';
+import * as api from '../api';
+
 class PlayGame extends Phaser.Scene {
   constructor() {
     super('PlayGame');
   }
   create() {
-    this.mountainGroup = this.add.group();
+    this.mountainGroup = this.physics.add.group();
+
     const scoreText = this.add.text(50, 100, 'Score: 0', {
       fontSize: '24px',
       fill: 'white',
       fontStyle: 'bold',
     });
+
     this.platformGroup = this.add.group({
       removeCallback: function (platform) {
         platform.scene.platformPool.add(platform);
@@ -21,6 +25,7 @@ class PlayGame extends Phaser.Scene {
         platform.scene.platformGroup.add(platform);
       },
     });
+
     this.coinGroup = this.add.group({
       removeCallback: function (coin) {
         coin.scene.coinPool.add(coin);
@@ -31,6 +36,7 @@ class PlayGame extends Phaser.Scene {
         coin.scene.coinGroup.add(coin);
       },
     });
+
     this.fireGroup = this.add.group({
       removeCallback: function (fire) {
         fire.scene.firePool.add(fire);
@@ -41,6 +47,7 @@ class PlayGame extends Phaser.Scene {
         fire.scene.fireGroup.add(fire);
       },
     });
+
     this.addMountains();
     this.addedPlatforms = 0;
     this.playerJumps = 0;

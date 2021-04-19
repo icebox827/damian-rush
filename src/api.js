@@ -17,4 +17,4 @@ const setScore = async(name, score) => {
   return response;
 };
 
-export default {getScore, setScore};
+export default { getScore, setScore };
