@@ -13,3 +13,12 @@
   width: 90px;
   height: 40px;
 }
+
+#input {
+  border-radius: 5px;
+  position: relative;
+  left: 690px;
+  bottom: 520px;
+  width: 180px;
+  height: 30px;
+}
