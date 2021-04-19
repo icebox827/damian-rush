@@ -30,6 +30,7 @@ class PlayGame extends Phaser.Scene {
   }
   create () {
     this.mountainGroup = this.add.group()
+    const scoreText = this.add.text(50, 100, 'Score: 0', { fontSize: '24px', fill: 'white', fontStyle: 'bold'})
 
     this.platformGroup = this.add.group({
       removeCallback: function (platform) {
@@ -81,11 +82,13 @@ class PlayGame extends Phaser.Scene {
 
     this.player = this.physics.add.sprite(
       gameState.playerStartPosition,
+      gameState.score,
       game.config.height * 0.7,
       'damian'
     )
-    this.player.setGravityY(gameState.playerGravity)
-    this.player.setDepth(2)
+    this.player.setGravityY(gameState.playerGravity);
+    this.player.setDepth(2);
+    this.player.setData('score', 0);
 
     this.dying = false
 
@@ -105,6 +108,10 @@ class PlayGame extends Phaser.Scene {
       this.player,
       this.coinGroup,
       function (player, coin) {
+        gameState.score = player.getData('score');
+        gameState.score += 10;
+        scoreText.setText('Score' + gameState.score)
+        player.setData('score', gameState.score)
         this.tweens.add({
           targets: coin,
           y: coin.y - 100,
