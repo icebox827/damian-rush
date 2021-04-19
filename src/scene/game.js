@@ -8,6 +8,7 @@ class PlayGame extends Phaser.Scene {
   }
   create() {
     this.mountainGroup = this.physics.add.group();
+    this.cloudGroup = this.physics.add.group();
 
     const scoreText = this.add.text(50, 100, 'Score: 0', {
       fontSize: '24px',
@@ -49,15 +50,18 @@ class PlayGame extends Phaser.Scene {
     });
 
     this.addMountains();
+    this.addClouds();
     this.addedPlatforms = 0;
     this.playerJumps = 0;
     this.addPlatform(1510, 1510 / 2, 700 * gameState.platformVerticalLimit[1]);
+    
     this.player = this.physics.add.sprite(
       gameState.playerStartPosition,
       gameState.score,
       700 * 0.7,
       'damian'
     );
+
     this.player.setGravityY(gameState.playerGravity);
     this.player.setDepth(2);
     this.player.setData('score', 0);
@@ -131,6 +135,33 @@ class PlayGame extends Phaser.Scene {
       rightmostMountain = Math.max(rightmostMountain, mountain.x);
     });
     return rightmostMountain;
+  }
+
+  addClouds() {
+    let rightmostCloud = this.getRightmostCloud();
+    if (rightmostCloud < 1510 * 2) {
+      let cloud = this.physics.add.sprite(
+        rightmostCloud + Phaser.Math.Between(50, 250),
+        700 + Phaser.Math.Between(0, 80),
+        'cloud'
+      );
+      cloud.setOrigin(0.5, 1);
+      cloud.body.setVelocityX(gameState.cloudSpeed * -1);
+      this.cloudGroup.add(cloud);
+      if (Phaser.Math.Between(0, 1)) {
+        cloud.setDepth(1);
+      }
+      cloud.setFrame(Phaser.Math.Between(0, 3));
+      this.addClouds();
+    }
+  }
+
+  getRightmostCloud() {
+    let rightmostCloud = -200;
+    this.cloudGroup.getChildren().forEach(function (cloud) {
+      rightmostCloud = Math.max(rightmostCloud, cloud.x);
+    });
+    return rightmostCloud;
   }
 
   addPlatform(platformWidth, posX, posY) {
@@ -223,7 +254,7 @@ class PlayGame extends Phaser.Scene {
       this.player.anims.stop();
     }
   }
-  
+
   update() {
     if (this.player.y > 700) {
       this.scene.start('PlayGame');

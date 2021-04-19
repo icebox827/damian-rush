@@ -2,6 +2,7 @@ const gameState = {
   name: '',
   score: 0,
   platformSpeedRange: [300, 300],
+  cloudSpeed: 40,
   mountainSpeed: 80,
   spawnRange: [80, 300],
   platformSizeRange: [90, 300],
