@@ -69,7 +69,7 @@ class PlayGame extends Phaser.Scene {
     this.platformCollider = this.physics.add.collider(this.player, this.platformGroup,function () {
       if(!this.player.anims.isPlaying) {
         this.player.anims.play('run');
-      }
+      } 
     },
     null,
     this
@@ -97,7 +97,8 @@ class PlayGame extends Phaser.Scene {
     );
     this.physics.add.overlap(this.player, this.fireGroup, function (player, fire) {
       this.dying = true;
-      this.add.text(150, 450, 'Game Over');
+      this.add.text(655, 280, 'Game Over', { fontSize: '48px', fill: 'black', fontFamily: 'bold' } );
+      this.physics.pause();
       this.player.anims.stop();
       this.player.setFrame(2);
       this.player.body.setVelocityY(-200);
