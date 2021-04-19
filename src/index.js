@@ -1,27 +1,30 @@
 import Phaser from 'phaser'
 import Preload from './scene/preload'
-// import Game from './scene/game';
+// import PlayGame from './scene/game';
 // import Title from './scene/title'
 import gameState from './scene/boot'
 
-let game
+let game;
 
 window.onload = function () {
   const config = {
     type: Phaser.AUTO,
     width: 1510,
-    height: 720,
-    scene: [Preload, playGame],
+    height: 700,
+    scene: [Preload, PlayGame],
     backgroundColor: 0x0c88c7,
     physics: {
       default: 'arcade'
-    }
+    },
+    dom: {
+      createContainer: true,
+    },
   }
-  game = new Phaser.Game(config)
-  window.focus()
+  game = new Phaser.Game(config);
+  window.focus();
 }
 
-class playGame extends Phaser.Scene {
+class PlayGame extends Phaser.Scene {
   constructor () {
     super('PlayGame')
   }

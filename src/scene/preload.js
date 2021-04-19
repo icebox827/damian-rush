@@ -56,17 +56,6 @@ class Preload extends Phaser.Scene{
     });
 
     this.anims.create({
-      key: "rotate",
-      frames: this.anims.generateFrameNumbers("trap", {
-          start: 0,
-          end: 4
-      }),
-      frameRate: 15,
-      yoyo: true,
-      repeat: -1
-    });
-
-    this.anims.create({
       key: "burn",
       frames: this.anims.generateFrameNumbers("fire", {
           start: 0,

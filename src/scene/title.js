@@ -3,37 +3,25 @@ import gameState from './boot';
 
 class Title extends Phaser.Scene {
   constructor() {
-    super({ key: 'Title' })
+    super('Title')
+  }
+
+  preload() {
+    this.load.image('start', 'assets/img/start.png');
+    this.load.audio('stardust', 'assets/audio/stardust.mp3');
   }
 
   create() {
-    this.add.text(160, 50, 'Damian Rush', { fontSize: '48px', fill: 'Blue', fontFamily: 'bold' });
-    this.add.text(207, 120, 'Enter your name', { fontSize: '22px', fill: 'green' });
- 
-    const input = document.createElement('input');
-    const btn = document.createElement('button');
+    this.add.text(530, 50, 'Welcome to Damian Rush', { fontSize: '48px', fill: 'red', fontFamily: 'bold' });
+    this.add.text(570, 120, 'Please enter your name', { fontSize: '32px', fill: 'white' })
 
-    input.id = 'input';
-    btn.id = 'btn';
-    btn.type = 'button';
-    btn.textContent = 'Start';
-
-    document.body.appendChild(input);
-    document.body.appendChild(btn);
+    this.button = this.add.image(755, 300, 'start').setInteractive().on('pointerDown', () => {
+      this.scene.start('preloadGame');
+    });
   }
 
   update(){
-    document.getElementById('btn').onclick = () => {
-      if (document.getElementById('input').value !== '') {
-        this.name = document.getElementById('input').value;
-        gameState.name = this.name;
-        this.scene.start('Game');
-        document.getElementById('input').remove();
-        document.getElementById('btn').remove();
-      } else {
-        this.add.text(90, 320, 'Please enter your name!', { fontSize: '22px', fill: 'red' });
-      }
-    };
+    
   }
 }
 
