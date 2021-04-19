@@ -3,7 +3,6 @@ import Title from './scene/title';
 import Preload from './scene/preload';
 import PlayGame from './scene/game';
 
-
 window.onload = function () {
   const config = {
     type: Phaser.AUTO,

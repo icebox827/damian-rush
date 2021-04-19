@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#btn {
+  color: aliceblue;
+  background-color: red;
+  border-radius: 8px;
+  position: absolute;
+  left: 740px;
+  top: 240px;
+  width: 90px;
+  height: 40px;
+}
