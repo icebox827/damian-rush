@@ -70,22 +70,19 @@ class PlayGame extends Phaser.Scene {
     null,
     this
     );
-    this.physics.add.overlap(
-      this.player,
-      this.coinGroup,
-      function (player, coin) {
-        gameState.score = player.getData('score');
-        gameState.score += 10;
-        scoreText.setText('Score' + gameState.score);
-        player.setData('score', gameState.score);
-        this.tweens.add({
-          targets: coin,
-          y: coin.y - 100,
-          alpha: 0,
-          duration: 800,
-          ease: 'Cubic.easeOut',
-          callbackScope: this,
-          onComplete: function () {
+    this.physics.add.overlap(this.player, this.coinGroup, function (player, coin) {
+      gameState.score = player.getData('score');
+      gameState.score += 10;
+      scoreText.setText('Score' + gameState.score);
+      player.setData('score', gameState.score);
+      this.tweens.add({
+        targets: coin,
+        y: coin.y - 100,
+        alpha: 0,
+        duration: 800,
+        ease: 'Cubic.easeOut',
+        callbackScope: this,
+        onComplete: function () {
             this.coinGroup.killAndHide(coin);
             this.coinGroup.remove(coin);
           },
@@ -94,21 +91,21 @@ class PlayGame extends Phaser.Scene {
       null,
       this
     );
-    this.physics.add.overlap(
-      this.player,
-      this.fireGroup,
-      function (player, fire) {
-        this.dying = true;
-        this.player.anims.stop();
-        this.player.setFrame(2);
-        this.player.body.setVelocityY(-200);
-        this.physics.world.removeCollider(this.platformCollider);
+    this.physics.add.overlap(this.player, this.fireGroup, function (player, fire) {
+      this.dying = true;
+      this.add.text(150, 450, 'Game Over');
+      this.player.anims.stop();
+      this.player.setFrame(2);
+      this.player.body.setVelocityY(-200);
+      this.physics.world.removeCollider(this.platformCollider);
       },
       null,
       this
     );
+
     this.input.on('pointerdown', this.jump, this);
   }
+
   addMountains() {
     let rightmostMountain = this.getRightmostMountain();
     if (rightmostMountain < 1510 * 2) {
@@ -127,6 +124,7 @@ class PlayGame extends Phaser.Scene {
       this.addMountains();
     }
   }
+
   getRightmostMountain() {
     let rightmostMountain = -200;
     this.mountainGroup.getChildren().forEach(function (mountain) {
@@ -134,6 +132,7 @@ class PlayGame extends Phaser.Scene {
     });
     return rightmostMountain;
   }
+
   addPlatform(platformWidth, posX, posY) {
     this.addedPlatforms++;
     let platform;
@@ -209,6 +208,7 @@ class PlayGame extends Phaser.Scene {
       }
     }
   }
+
   jump() {
     if (
       !this.dying &&
@@ -223,6 +223,7 @@ class PlayGame extends Phaser.Scene {
       this.player.anims.stop();
     }
   }
+  
   update() {
     if (this.player.y > 700) {
       this.scene.start('PlayGame');

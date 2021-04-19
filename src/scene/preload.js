@@ -17,10 +17,10 @@ class Preload extends Phaser.Scene {
       frameWidth: 40,
       frameHeight: 70,
     });
-    this.load.spritesheet('trap', 'assets/img/trap.png', {
-      frameWidth: 40,
-      frameHeight: 70,
-    });
+    this.load.image('cloud', 'assets/img/cloud.png', {
+      frameWidth: 512,
+      frameHeight: 512,
+    })
     this.load.image('mountain', 'assets/img/bg.png', {
       frameWidth: 512,
       frameHeight: 512,
