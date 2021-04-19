@@ -1,5 +1,4 @@
 import Phaser from 'phaser';
-import gameState from './boot';
 
 class Preload extends Phaser.Scene{
   constructor(){

@@ -1,8 +1,6 @@
 import Phaser from 'phaser';
 import gameState from './boot';
-import Preload from './preload';
-
-let game ;
+import game from '../index';
 
 class PlayGame extends Phaser.Scene {
   constructor () {
@@ -55,14 +53,15 @@ class PlayGame extends Phaser.Scene {
     this.playerJumps = 0
 
     this.addPlatform(
-      game.config.width,
-      game.config.width / 2,
-      game.config.height * gameState.platformVerticalLimit[1]
+      1510,
+      1510 / 2,
+      700 * gameState.platformVerticalLimit[1]
     )
 
     this.player = this.physics.add.sprite(
       gameState.playerStartPosition,
-      game.config.height * 0.7,
+      gameState.score,
+      700 * 0.7,
       'damian'
     )
     this.player.setGravityY(gameState.playerGravity);
@@ -87,6 +86,10 @@ class PlayGame extends Phaser.Scene {
       this.player,
       this.coinGroup,
       function (player, coin) {
+        gameState.score = player.getData('score');
+        gameState.score += 10;
+        scoreText.setText('Score :' + gameState.score)
+        player.setData('Score :', gameState.score)
         this.tweens.add({
           targets: coin,
           y: coin.y - 100,
@@ -123,10 +126,10 @@ class PlayGame extends Phaser.Scene {
 
   addMountains () {
     let rightmostMountain = this.getRightmostMountain()
-    if (rightmostMountain < game.config.width * 2) {
+    if (rightmostMountain < 1510 * 2) {
       let mountain = this.physics.add.sprite(
         rightmostMountain + Phaser.Math.Between(100, 350),
-        game.config.height + Phaser.Math.Between(0, 100),
+        700 + Phaser.Math.Between(0, 100),
         'mountain'
       )
       mountain.setOrigin(0.5, 1)
@@ -243,17 +246,17 @@ class PlayGame extends Phaser.Scene {
   }
 
   update () {
-    if (this.player.y > game.config.height) {
+    if (this.player.y > 700) {
       this.scene.start('PlayGame')
     }
 
     this.player.x = gameState.playerStartPosition
 
-    let minDistance = game.config.width
+    let minDistance = 1510
     let rightmostPlatformHeight = 0
     this.platformGroup.getChildren().forEach(function (platform) {
       let platformDistance =
-        game.config.width - platform.x - platform.displayWidth / 2
+        1510 - platform.x - platform.displayWidth / 2
       if (platformDistance < minDistance) {
         minDistance = platformDistance
         rightmostPlatformHeight = platform.y
@@ -282,7 +285,7 @@ class PlayGame extends Phaser.Scene {
       if (mountain.x < -mountain.displayWidth) {
         let rightmostMountain = this.getRightmostMountain()
         mountain.x = rightmostMountain + Phaser.Math.Between(100, 350)
-        mountain.y = game.config.height + Phaser.Math.Between(0, 100)
+        mountain.y = 700 + Phaser.Math.Between(0, 100)
         mountain.setFrame(Phaser.Math.Between(0, 3))
         if (Phaser.Math.Between(0, 1)) {
           mountain.setDepth(1)
@@ -303,9 +306,9 @@ class PlayGame extends Phaser.Scene {
         )
       let nextPlatformGap = rightmostPlatformHeight + platformRandomHeight
       let minPlatformHeight =
-        game.config.height * gameState.platformVerticalLimit[0]
+        700 * gameState.platformVerticalLimit[0]
       let maxPlatformHeight =
-        game.config.height * gameState.platformVerticalLimit[1]
+        700 * gameState.platformVerticalLimit[1]
       let nextPlatformHeight = Phaser.Math.Clamp(
         nextPlatformGap,
         minPlatformHeight,
@@ -313,7 +316,7 @@ class PlayGame extends Phaser.Scene {
       )
       this.addPlatform(
         nextPlatformWidth,
-        game.config.width + nextPlatformWidth / 2,
+        1510 + nextPlatformWidth / 2,
         nextPlatformHeight
       )
     }
