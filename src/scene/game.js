@@ -145,7 +145,7 @@ class PlayGame extends Phaser.Scene {
         700 + Phaser.Math.Between(0, 80),
         'cloud'
       );
-      cloud.setOrigin(0.5, 1);
+      cloud.setOrigin(1, 2);
       cloud.body.setVelocityX(gameState.cloudSpeed * -1);
       this.cloudGroup.add(cloud);
       if (Phaser.Math.Between(0, 1)) {
