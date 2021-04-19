@@ -1,8 +1,10 @@
 import Phaser from 'phaser';
+
 class Preload extends Phaser.Scene {
   constructor() {
     super('PreloadGame');
   }
+
   preload() {
     this.load.image('platform', 'assets/img/platform.png');
     this.load.spritesheet('damian', 'assets/img/damian.png', {
@@ -20,12 +22,13 @@ class Preload extends Phaser.Scene {
     this.load.image('cloud', 'assets/img/cloud.png', {
       frameWidth: 512,
       frameHeight: 512,
-    })
+    });
     this.load.image('mountain', 'assets/img/bg.png', {
       frameWidth: 512,
       frameHeight: 512,
     });
   }
+
   create() {
     this.anims.create({
       key: 'run',
@@ -46,7 +49,7 @@ class Preload extends Phaser.Scene {
       frameRate: 15,
       repeat: -1,
     });
-    
+
     this.scene.start('PlayGame');
   }
 }

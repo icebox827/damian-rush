@@ -3,7 +3,7 @@ import gameState from './boot';
 
 class Title extends Phaser.Scene {
   constructor() {
-    super('Title')
+    super('Title');
   }
 
   preload() {
@@ -23,12 +23,12 @@ class Title extends Phaser.Scene {
     document.body.appendChild(input);
 
     this.add.text(530, 50, 'Welcome to Damian Rush', { fontSize: '48px', fill: 'red', fontFamily: 'bold' });
-    this.add.text(570, 120, 'Please enter your name', { fontSize: '32px', fill: 'white' })
+    this.add.text(570, 120, 'Please enter your name', { fontSize: '32px', fill: 'white' });
   }
 
   update() {
     btn.onclick = () => {
-      if(document.getElementById('input').value !== '') {
+      if (document.getElementById('input').value !== '') {
         this.name = document.getElementById('input').value;
         gameState.name = this.name;
         this.scene.start('PreloadGame');

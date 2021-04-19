@@ -16,6 +16,6 @@ const gameState = {
   coinPercent: 30,
   firePercent: 25,
   trapPercent: 25,
-}
+};
 
 export default gameState;
