@@ -55,18 +55,6 @@ class PlayGame extends Phaser.Scene {
       }
     })
 
-    this.trapGroup = this.add.group({
-      removeCallback: function (trap) {
-        trap.scene.trapPool.add(trap)
-      }
-    })
-  
-    this.trapPool = this.add.group({
-      removeCallback: function (trap) {
-        trap.scene.trapGroup.add(trap)
-      }
-    })
-
     this.fireGroup = this.add.group({
       removeCallback: function (fire) {
         fire.scene.firePool.add(fire)
@@ -138,20 +126,6 @@ class PlayGame extends Phaser.Scene {
       this.player,
       this.fireGroup,
       function (player, fire) {
-        this.dying = true
-        this.player.anims.stop()
-        this.player.setFrame(2)
-        this.player.body.setVelocityY(-200)
-        this.physics.world.removeCollider(this.platformCollider)
-      },
-      null,
-      this
-    )
-
-    this.physics.add.overlap(
-      this.player,
-      this.trapGroup,
-      function (player, trap) {
         this.dying = true
         this.player.anims.stop()
         this.player.setFrame(2)
@@ -267,31 +241,6 @@ class PlayGame extends Phaser.Scene {
           this.fireGroup.add(fire)
         }
       }
-
-      if (Phaser.Math.Between(1, 100) <= gameState.trapPercent) {
-        if (this.trapPool.getLength()) {
-          let trap = this.trapPool.getFirst()
-          trap.x =
-            posX - platformWidth / 2 + Phaser.Math.Between(1, platformWidth)
-          trap.y = posY - 46
-          trap.alpha = 1
-          trap.active = true
-          trap.visible = true
-          this.trapPool.remove(trap)
-        } else {
-          let trap = this.physics.add.sprite(
-            posX - platformWidth / 2 + Phaser.Math.Between(1, platformWidth),
-            posY - 46,
-            'trap'
-          )
-          trap.setImmovable(true)
-          trap.setVelocityX(platform.body.velocity.x)
-          trap.setSize(8, 2, true)
-          trap.anims.play('rotate')
-          trap.setDepth(2)
-          this.trapGroup.add(trap)
-        }
-      }
     }
   }
 
@@ -344,13 +293,6 @@ class PlayGame extends Phaser.Scene {
       if (fire.x < -fire.displayWidth / 2) {
         this.fireGroup.killAndHide(fire)
         this.fireGroup.remove(fire)
-      }
-    }, this)
-
-    this.trapGroup.getChildren().forEach(function (fire) {
-      if (trap.x < -trap.displayWidth / 2) {
-        this.trapGroup.killAndHide(trap)
-        this.trapGroup.remove(trap)
       }
     }, this)
 
