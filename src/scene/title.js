@@ -35,7 +35,7 @@ class Title extends Phaser.Scene {
         btn.remove();
         input.remove();
       } else {
-        this.add.text(655, 155, "Name can't be blank", { fontSize: '16px', fill: 'red' });
+        this.add.text(690, 155, "Name can't be blank", { fontSize: '16px', fill: 'red' });
       }
     };
   }

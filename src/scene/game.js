@@ -62,16 +62,13 @@ class PlayGame extends Phaser.Scene {
     this.player.setDepth(2);
     this.player.setData('score', 0);
     this.dying = false;
-    this.platformCollider = this.physics.add.collider(
-      this.player,
-      this.platformGroup,
-      function () {
-        if (!this.player.anims.isPlaying) {
-          this.player.anims.play('run');
-        }
-      },
-      null,
-      this
+    this.platformCollider = this.physics.add.collider(this.player, this.platformGroup,function () {
+      if(!this.player.anims.isPlaying) {
+        this.player.anims.play('run');
+      }
+    },
+    null,
+    this
     );
     this.physics.add.overlap(
       this.player,
