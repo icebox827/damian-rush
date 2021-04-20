@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import Phaser from 'phaser';
 
 class Preload extends Phaser.Scene {
@@ -27,6 +28,8 @@ class Preload extends Phaser.Scene {
       frameWidth: 512,
       frameHeight: 512,
     });
+
+    this.load.audio('music', 'assets/audio/stardust.mp3');
   }
 
   create() {
@@ -49,6 +52,9 @@ class Preload extends Phaser.Scene {
       frameRate: 15,
       repeat: -1,
     });
+
+    const music = this.sound.add('music', { loop: true });
+    music.play('volume', { volume: 0.3 });
 
     this.scene.start('PlayGame');
   }

@@ -8,7 +8,7 @@ class Title extends Phaser.Scene {
   }
 
   preload() {
-    this.load.audio('stardust', 'assets/audio/stardust.mp3');
+    this.load.audio('music', 'assets/audio/stardust.mp3');
   }
 
   create() {
