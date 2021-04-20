@@ -4,7 +4,7 @@ This is a 2D game built with Phaser which is a JavaScript framwork for video gam
 
 ## Live Demo
 
-[PLAY!](https://lucid-joliot-e8cdf9.netlify.app/)
+[PLAY!](https://jolly-jang-ba35f9.netlify.app)
 
 ![SCREENSHOT](app_screeshot.png)
 
