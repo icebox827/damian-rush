@@ -13,7 +13,7 @@ class PlayGame extends Phaser.Scene {
     this.mountainGroup = this.physics.add.group();
     this.cloudGroup = this.physics.add.group();
 
-    const scoreText = this.add.text(50, 100, 'Score: 0', {
+    const scoreText = this.add.text(150, 100, 'Score: 0', {
       fontSize: '24px',
       fill: 'white',
       fontStyle: 'bold',
@@ -68,7 +68,9 @@ class PlayGame extends Phaser.Scene {
     this.player.setGravityY(gameState.playerGravity);
     this.player.setDepth(2);
     this.player.setData('score', 0);
+    this.player.setData('name', '');
     this.dying = false;
+
     this.platformCollider = this.physics.add.collider(this.player, this.platformGroup, function () {
       if (!this.player.anims.isPlaying) {
         this.player.anims.play('run');
@@ -76,10 +78,11 @@ class PlayGame extends Phaser.Scene {
     },
     null,
     this);
+
     this.physics.add.overlap(this.player, this.coinGroup, function (player, coin) {
       gameState.score = player.getData('score');
       gameState.score += 10;
-      scoreText.setText(`Score${gameState.score}`);
+      this.scoreText.setText(`Score: ${gameState.score}`);
       player.setData('score', gameState.score);
       this.tweens.add({
         targets: coin,
@@ -100,10 +103,6 @@ class PlayGame extends Phaser.Scene {
       this.dying = true;
       this.physics.pause();
       this.scene.start('GameOver');
-      // this.player.anims.stop();
-      // this.player.setFrame(2);
-      // this.player.body.setVelocityY(-200);
-      // this.physics.world.removeCollider(this.platformCollider);
     },
     null,
     this);
@@ -244,7 +243,7 @@ class PlayGame extends Phaser.Scene {
     if (
       !this.dying
       && (this.player.body.touching.down
-        || (this.playerJumps > 0 && this.playerJumps < gameState.jumps))
+      || (this.playerJumps > 0 && this.playerJumps < gameState.jumps))
     ) {
       if (this.player.body.touching.down) {
         this.playerJumps = 0;
