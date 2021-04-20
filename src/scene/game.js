@@ -257,7 +257,8 @@ class PlayGame extends Phaser.Scene {
 
   update() {
     if (this.player.y > 700) {
-      this.scene.start('PlayGame');
+      this.dying = true;
+      this.scene.start('GameOver');
     }
     this.player.x = gameState.playerStartPosition;
     let minDistance = 1510;

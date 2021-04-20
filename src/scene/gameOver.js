@@ -21,6 +21,7 @@ class GameOver extends Phaser.Scene {
     restartBtn.onclick = () => {
       this.scene.start('PreloadGame');
       restartBtn.remove();
+      gameState.score = 0;
     };
 
     const result = async () => await api.getScore();
@@ -38,7 +39,9 @@ class GameOver extends Phaser.Scene {
         api.setScore(gameState.name, gameState.score);
       }
     };
-    display();
+    if (gameState.score !== 0) {
+      display();
+    }
   }
 }
 
