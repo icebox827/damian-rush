@@ -22,6 +22,8 @@ This is a 2D game built with Phaser which is a JavaScript framwork for video gam
 - cd into the game directory.
 - Run  ```npm install```.
 - Open in a browser.
+- left click to jump.
+- Double to jump twice.
 
 ## Tests
 
