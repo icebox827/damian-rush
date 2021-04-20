@@ -14,6 +14,16 @@
   height: 40px;
 }
 
+#restart-btn {
+  color: aliceblue;
+  background-color: green;
+  position: absolute;
+  left: 720px;
+  top: 430px;
+  width: 90px;
+  height: 40px;
+}
+
 #input {
   border-radius: 5px;
   position: relative;

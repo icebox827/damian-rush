@@ -13,16 +13,27 @@ class GameOver extends Phaser.Scene {
 
   create() {
     this.add.text(655, 50, 'Game Over', { fontSize: '48px', fill: 'black', fontFamily: 'bold' });
+    const restartBtn = document.createElement('button');
+    restartBtn.id = 'restart-btn';
+    restartBtn.textContent = 'Restart';
+    document.body.appendChild(restartBtn);
+
+    restartBtn.onclick = () => {
+      this.scene.start('PreloadGame');
+      restartBtn.remove();
+    };
 
     const result = async () => await api.getScore();
 
     const display = async () => {
       const scores = await result();
-      for (let i = 0; i < scores.length; i++) {
-        this.add.text(180, 40, 'Leaderboard Score');
-        this.add.text(200, i * -50, `${scores[i].user}'s Score is ${scores[i].score}`);
+      scores.sort((a, b) => b.score - a.score);
+      for (let i = 0; i < 10; i += 1) {
+        this.add.text(50, 40, 'Leaderboard Score :');
+        this.add.text(50, 100 + (i * 50), `${scores[i].user}'s Score is ${scores[i].score}`);
       }
-      this.add.text(580, 50, 'My Score');
+      this.add.text(580, 50, 'Your Score :');
+      this.add.text(580, 90, gameState.score);
       if (gameState.score !== 0) {
         api.setScore(gameState.name, gameState.score);
       }

@@ -3,6 +3,7 @@
 /* eslint-disable func-names */
 import Phaser from 'phaser';
 import gameState from './boot';
+import * as api from '../api';
 
 class PlayGame extends Phaser.Scene {
   constructor() {
@@ -82,7 +83,7 @@ class PlayGame extends Phaser.Scene {
     this.physics.add.overlap(this.player, this.coinGroup, function (player, coin) {
       gameState.score = player.getData('score');
       gameState.score += 10;
-      this.scoreText.setText(`Score: ${gameState.score}`);
+      scoreText.setText(`Score: ${gameState.score}`);
       player.setData('score', gameState.score);
       this.tweens.add({
         targets: coin,
@@ -101,7 +102,7 @@ class PlayGame extends Phaser.Scene {
     this);
     this.physics.add.overlap(this.player, this.fireGroup, function (player, fire) {
       this.dying = true;
-      this.physics.pause();
+      api.setScore(gameState.name, gameState.score);
       this.scene.start('GameOver');
     },
     null,
