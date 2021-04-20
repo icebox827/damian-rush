@@ -74,10 +74,15 @@ I spent almost a day learning Phaser on Codecademy, and various Youtube videos. 
 <!--Begin -->
 
 > I started bynsetting up the environment, gathering assets, and make sure that Phaser is configured without problem.
+
 > I created the different scenes for my game following the documentation. This gives me some level of confidence because, from that point, I already have a deliverable.
+
 > After that, I picked the scenes one after another, and I preloaded the required assets. I also link the scenes all together according to the game design, so I can move freely from one scene to another.
+
 > Next, I added logic to animate player, the coin, and the fire. Having done these, I used object pool to add and remove platforms to the scene, and I add the bacground music.
+
 > I later added logic to monitor collision between the player, the coin, the platform, and the fire. Lastly in the game scene, I added the scoring mechanism to keep track of the scores.
+
 > A player does have to enter his name before playing the game. If a player did not enter his/her name, a warnong message will be displayed.
 
 <!-- End -->
