@@ -33,14 +33,15 @@ class GameOver extends Phaser.Scene {
         this.add.text(50, 40, 'Leaderboard Score :');
         this.add.text(50, 100 + (i * 50), `${scores[i].user}'s Score is ${scores[i].score}`);
       }
-      this.add.text(580, 50, 'Your Score :');
-      this.add.text(580, 90, gameState.score);
+      this.add.text(550, 50, 'Your Score :');
+      this.add.text(550, 90, gameState.score);
       if (gameState.score !== 0) {
         api.setScore(gameState.name, gameState.score);
       }
     };
     if (gameState.score !== 0) {
       display();
+      this.game.sound.stopAll();
     }
   }
 }

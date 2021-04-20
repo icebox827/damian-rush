@@ -6,7 +6,7 @@ This is a 2D game built with Phaser which is a JavaScript framwork for video gam
 
 [PLAY!](https://jolly-jang-ba35f9.netlify.app)
 
-![SCREENSHOT](app_screeshot.png)
+![SCREENSHOT](app_screenshot.png)
 
 ## Game instructions
 
