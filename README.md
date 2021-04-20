@@ -38,15 +38,12 @@ Inside the game directory:
 - Jest
 - JavaScript
 - CSS
+- Linters
 - Webpack
 - Phaser 3
 - Leaderboard API
 - npm
 - VSCode
-
-## Video presentation
-
-[VIDEO](https://www.loom.com/share/60052d21d7a14defb7b3d9c7a7a9ad35)
 
 ## Author
 
