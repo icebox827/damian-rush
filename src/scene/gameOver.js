@@ -11,15 +11,17 @@ class GameOver extends Phaser.Scene {
   }
 
   create() {
-    this.add.text(655, 280, 'Game Over', { fontSize: '48px', fill: 'black', fontFamily: 'bold' });
+    this.add.text(655, 50, 'Game Over', { fontSize: '48px', fill: 'black', fontFamily: 'bold' });
 
     const result = async () => await api.getScore();
 
     const display = async () => {
       const scores = await result();
       for (let i = 0; i < scores.length; i++) {
-        this.add.text(150, i * -50, `${scores[i].user}'s Score is ${scores[i].score}`);
+        this.add.text(180, 50, 'Leaderboard Score');
+        this.add.text(200, i * -50, `${scores[i].user}'s Score is ${scores[i].score}`);
       }
+      this.add.text(180, 50, 'Leaderboard Score');
     };
     display();
   }
