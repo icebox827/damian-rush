@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 /* eslint-disable no-return-await */
 import Phaser from 'phaser';
 import * as api from '../api';
@@ -16,9 +17,10 @@ class GameOver extends Phaser.Scene {
 
     const display = async () => {
       const scores = await result();
-      await console.log(scores);
+      for (let i = 0; i < scores.length; i++) {
+        this.add.text(150, i * -50, `${scores[i].user}'s Score is ${scores[i].score}`);
+      }
     };
-
     display();
   }
 }
