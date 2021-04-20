@@ -43,6 +43,10 @@ class GameOver extends Phaser.Scene {
       display();
       this.game.sound.stopAll();
     }
+
+    if (gameState.score === 0) {
+      this.game.sound.stopAll();
+    }
   }
 }
 
