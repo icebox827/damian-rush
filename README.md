@@ -29,7 +29,6 @@ Inside the game directory:
 
 - Run  ```npm install``` to install project dependencies.
 - Run ```npm run test``` to run the unit tests locally.
-![SCREENSHOT](./tests.png)
 
 ## Technologies
 
