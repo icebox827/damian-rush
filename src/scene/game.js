@@ -102,7 +102,6 @@ class PlayGame extends Phaser.Scene {
     this);
     this.physics.add.overlap(this.player, this.fireGroup, function (player, fire) {
       this.dying = true;
-      api.setScore(gameState.name, gameState.score);
       this.scene.start('GameOver');
     },
     null,

@@ -53,8 +53,8 @@ class Preload extends Phaser.Scene {
       repeat: -1,
     });
 
-    const music = this.sound.add('music', { loop: true });
-    music.play('volume', { volume: 0.3 });
+    const music = this.sound.add('music', { volume: 0.5 }, { loop: true });
+    music.play();
 
     this.scene.start('PlayGame');
   }
