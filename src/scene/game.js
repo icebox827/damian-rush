@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable func-names */
 import Phaser from 'phaser';
 import gameState from './boot';

@@ -1,5 +1,4 @@
 /* eslint-disable func-names */
-/* eslint-disable no-unused-vars */
 
 import Phaser from 'phaser';
 import Title from './scene/title';

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import Phaser from 'phaser';
 
 class Preload extends Phaser.Scene {
