@@ -12,6 +12,7 @@ This is a 2D game built with Phaser which is a JavaScript framwork for video gam
 
 - left click to jump.
 - Double click to jump twice.
+- Clikc on restart to restart the session.
 
 ## Usage
 
@@ -28,6 +29,8 @@ Inside the game directory:
 
 - Run  ```npm install``` to install project dependencies.
 - Run ```npm run test``` to run the unit tests locally.
+
+![SCREENSHOT](test_screenshot.png)
 
 ## Technologies
 
