@@ -1,4 +1,3 @@
-/* eslint-disable no-return-await */
 import Phaser from 'phaser';
 import * as api from '../api';
 import '@babel/polyfill';
@@ -23,7 +22,10 @@ class GameOver extends Phaser.Scene {
       gameState.score = 0;
     };
 
-    const result = async () => await api.getScore();
+    async function result() {
+      const result = await api.getScore();
+      return result;
+    }
 
     const display = async () => {
       const scores = await result();
