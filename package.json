@@ -1,5 +1,10 @@
 {
   "name": "damian-rush",
+  "jest": {
+    "setupFiles": [
+      "jest-canvas-mock"
+    ]
+  },
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -40,6 +45,7 @@
     "eslint-plugin-import": "^2.20.2",
     "file-loader": "^6.1.0",
     "jest": "^26.6.3",
+    "jest-canvas-mock": "^2.3.1",
     "webpack": "^5.33.2",
     "webpack-cli": "^4.6.0",
     "webpack-dev-server": "^3.11.2",
