@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 /* eslint-disable no-unused-vars */
 /* eslint-disable func-names */
 import Phaser from 'phaser';
@@ -165,7 +164,7 @@ class PlayGame extends Phaser.Scene {
   }
 
   addPlatform(platformWidth, posX, posY) {
-    this.addedPlatforms++;
+    this.addedPlatforms += 1;
     let platform;
     if (this.platformPool.getLength()) {
       platform = this.platformPool.getFirst();
@@ -249,7 +248,7 @@ class PlayGame extends Phaser.Scene {
         this.playerJumps = 0;
       }
       this.player.setVelocityY(gameState.jumpForce * -1);
-      this.playerJumps++;
+      this.playerJumps += 1;
       this.player.anims.stop();
     }
   }
