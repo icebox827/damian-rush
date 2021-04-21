@@ -1,6 +1,5 @@
 import '@babel/polyfill';
 import 'regenerator-runtime/runtime';
-
 import Phaser from 'phaser';
 import Title from '../src/scene/game';
 
