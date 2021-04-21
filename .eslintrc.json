@@ -16,6 +16,7 @@
     "eol-last": "off",
     "arrow-parens": "off",
     "no-unused-vars":"off",
+    "no-undef":"off",
     "no-use-before-define": ["error", {"functions": false, "classes": false, "variables": false}]
   },
   "ignorePatterns": [

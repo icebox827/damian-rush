@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import Phaser from 'phaser';
 import gameState from './boot';
 
