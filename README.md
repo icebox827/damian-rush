@@ -10,11 +10,8 @@ This is a 2D game built with Phaser which is a JavaScript framwork for video gam
 
 ## Game instructions
 
-- Enter your name and click the start button.
-- You can move left, right, and jump using keyboard <' arrows '>.
-- You can fire and kill enemies using the keyboard <' space '>.
-- You level up when your score advances.
-- When you level up your speed increases and the game gets harder!
+- left click to jump.
+- Double to jump twice.
 
 ## Usage
 
@@ -22,8 +19,8 @@ This is a 2D game built with Phaser which is a JavaScript framwork for video gam
 - cd into the game directory.
 - Run  ```npm install```.
 - Open in a browser.
-- left click to jump.
-- Double to jump twice.
+- Enter your name.
+- Click start to begin the game.
 
 ## Tests
 
@@ -77,7 +74,7 @@ I spent almost a day learning Phaser on Codecademy, and various Youtube videos. 
 
 > I started bynsetting up the environment, gathering assets, and make sure that Phaser is configured without problem.
 
-> I created the different scenes for my game following the documentation. This gives me some level of confidence because, from that point, I already have a deliverable.
+> I created the different scenes for my game following the documentation, and my main objective was to create a basic phaser game with few functionnalities, which I did. This gives me some level of confidence because, from that point, I already have a deliverable.
 
 > After that, I picked the scenes one after another, and I preloaded the required assets. I also link the scenes all together according to the game design, so I can move freely from one scene to another.
 
