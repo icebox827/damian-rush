@@ -11,7 +11,7 @@ This is a 2D game built with Phaser which is a JavaScript framwork for video gam
 ## Game instructions
 
 - left click to jump.
-- Double to jump twice.
+- Double click to jump twice.
 
 ## Usage
 
