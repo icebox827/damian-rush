@@ -1,5 +1,3 @@
-/* eslint-disable func-names */
-
 import Phaser from 'phaser';
 import Title from './scene/title';
 import Preload from './scene/preload';

@@ -1,4 +1,3 @@
-/* eslint-disable func-names */
 import Phaser from 'phaser';
 import gameState from './boot';
 import * as api from '../api';
