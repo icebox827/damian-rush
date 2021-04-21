@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 /* eslint-disable no-return-await */
 import Phaser from 'phaser';
 import * as api from '../api';
